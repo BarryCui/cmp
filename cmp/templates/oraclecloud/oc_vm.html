@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Oracle Cloud虚拟机{% endblock %}
+{% block header %}Oracle Cloud虚拟机{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_oc_vm') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>主机名</th>
+                <th>内网ip</th>
+                <th>公网ip</th>
+                <th>可用区</th>
+                <th>状态</th>
+                <th>规格</th>
+                <th>CPU核数</th>
+                <th>处理器型号</th>
+                <th>内存大小</th>
+                <th>带宽</th>
+                <th>创建时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.Name }}</td>
+              <td>{{ row.PrivateIp }}</td>
+              <td>{{ row.PublicIp }}</td>
+              <td>{{ row.Zone }}</td>
+              <td>{{ row.State }}</td>
+              <td>{{ row.Shape }}</td>
+              <td>{{ row.NumOfCpu }}</td>
+              <td>{{ row.CpuDesc }}</td>
+              <td>{{ row.Memory }}</td>
+              <td>{{ row.Bandwidth }}</td>
+              <td>{{ row.CreatedOn }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

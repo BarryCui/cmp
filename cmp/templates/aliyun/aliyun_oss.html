@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}阿里云OSS{% endblock %}
+{% block header %}阿里云OSS{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_aliyun_oss') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>Bucket名称</th>
+                <th>本月使用量</th>
+                <th>上月使用量</th>
+                <th>本月请求数</th>
+                <th>上月请求数</th>
+                <th>本月接收流量</th>
+                <th>上月接收流量</th>
+                <th>本月发送流量</th>
+                <th>上月发送流量</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.BucketName }}</td>
+              <td>{{ row.VolThisMon }}</td>
+              <td>{{ row.VolLastMon }}</td>
+              <td>{{ row.ReqThisMon }}</td>
+              <td>{{ row.ReqLastMon }}</td>
+              <td>{{ row.RecvThisMon }}</td>
+              <td>{{ row.RecvLastMon }}</td>
+              <td>{{ row.SendThisMon }}</td>
+              <td>{{ row.SendLastMon }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

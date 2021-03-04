@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}阿里云WAF{% endblock %}
+{% block header %}阿里云WAF{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_aliyun_waf') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>域名</th>
+                <th>回源地址(点击跳转至对应DNAT页面)</th>
+                <th>Http端口号</th>
+                <th>Https端口号</th>
+                <th>Cname</th>
+                <th>账号</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.DomainName }}</td>
+              <td><a href={{ url_for('dnat_eip', public_ip=row.OriginAddress) }}>{{ row.OriginAddress }}</td>
+              <td>{{ row.HttpPort }}</td>
+              <td>{{ row.HttpsPort }}</td>
+              <td>{{ row.Cname }}</td>
+              <td>{{ row.AccountName }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

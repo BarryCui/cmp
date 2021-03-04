@@ -1,0 +1,27 @@
+services:
+  cmp-app:
+    build: . 
+    ports:
+      - "8848:8000"
+    volumes:
+      - ~/.oci:/root/.oci
+      - ./cmp/env:/cmp/env
+    networks:
+      - cmp-network
+
+  cmp-redis:
+    image: "redis:alpine"
+    networks:
+      - cmp-network
+
+  cmp-mysql:
+    image: "mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: icicle@123
+      MYSQL_DATABASE: sysop_cmp
+    networks:
+      - cmp-network
+
+networks:
+  cmp-network:
+

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}阿里云SSL{% endblock %}
+{% block header %}阿里云SSL{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_aliyun_ssl') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>证书名称</th>
+                <th>证书唯一id</th>
+                <th>绑定域名</th>
+                <th>签发机构</th>
+                <th>生效时间</th>
+                <th>过期时间</th>
+                <th>所属账号</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.CertName }}</td>
+              <td>{{ row.CertId }}</td>
+              <td>{{ row.DomainName }}</td>
+              <td>{{ row.Issuer }}</td>
+              <td>{{ row.StartDate }}</td>
+              <td>{{ row.EndDate }}</td>
+              <td>{{ row.AccountName }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

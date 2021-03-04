@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Dnspod域名对应记录{% endblock %}
+{% block header %}Dnspod域名对应记录{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_dp_records') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>子域名</th>
+                <th>主域名</th>
+                <th>值</th>
+                <th>DNAT条目</th>
+                <th>CDN条目</th>
+                <th>WAF条目</th>
+                <th>更新时间</th>
+                <th>记录类型</th>
+                <th>启用状态(1启用,0禁用)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.ChildDomain }}</td>
+              <td>{{ row.ParentDomain }}</td>
+              <td>{{ row.Value }}</td>
+              <td><a href={{ url_for('dnat_eip', public_ip=row.Value) }}>{{ row.dnat_items }}</td>
+              <td><a href={{ url_for('cdn_search', value=row.Value) }}>{{ row.cdn_items }}</td>
+              <td><a href={{ url_for('waf_search', value=row.Value) }}>{{ row.waf_items }}</td>
+              <td>{{ row.UpdateTime }}</td>
+              <td>{{ row.Type }}</td>
+              <td>{{ row.Enabled }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

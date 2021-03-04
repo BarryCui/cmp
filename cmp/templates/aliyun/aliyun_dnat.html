@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}阿里云DNAT{% endblock %}
+{% block header %}阿里云DNAT{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}    
+    <p><a href="{{ url_for('update_aliyun_dnat') }}" class="button">更新数据</a></p>
+{% endblock %}  
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>公网ip</th>
+                <th>外部端口</th>
+                <th>内网ip</th>
+                <th>内部端口</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.ExternalPort }}</td>
+              <td>{{ row.ExternalIp }}</td>
+              <td>{{ row.InternalPort }}</td>
+              <td>{{ row.InternalIp }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

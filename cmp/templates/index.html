@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}云管平台首页{% endblock %}
+{% block header %}云管平台首页{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('recreate_db') }}" class="button">初始化数据库</a></p>
+{% endblock %}

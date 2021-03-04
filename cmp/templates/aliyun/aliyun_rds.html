@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}阿里云RDS{% endblock %}
+{% block header %}阿里云RDS{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_aliyun_rds') }}" class="button">更新数据</a></p>
+{% endblock %}
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>实例id</th>
+                <th>连接字符串</th>
+                <th>账号</th>
+                <th>可用区</th>
+                <th>区域</th>
+                <th>端口号</th>
+                <th>主机名</th>
+                <th>实例规格</th>
+                <th>CPU</th>
+                <th>内存</th>
+                <th>存储容量</th>
+                <th>创建时间</th>
+                <th>到期时间</th>
+                <th>引擎</th>
+                <th>白名单</th>
+                <th>上月应付金额</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.DBInstanceId }}</td>
+              <td>{{ row.ConnectionString }}</td>
+              <td>{{ row.AccountName }}</td>
+              <td>{{ row.ZoneId }}</td>
+              <td>{{ row.RegionId }}</td>
+              <td>{{ row.Port }}</td>
+              <td>{{ row.DBInstanceDescription }}</td>
+              <td>{{ row.DBInstanceClass }}</td>
+              <td>{{ row.DBInstanceCPU }}</td>
+              <td>{{ row.DBInstanceMemory }}</td>
+              <td>{{ row.DBInstanceStorage }}</td>
+              <td>{{ row.CreationTime }}</td>
+              <td>{{ row.ExpireTime }}</td>
+              <td>{{ row.Engine }}</td>
+              <td>{{ row.SecurityIPList }}</td>
+              <td>{{ row.MonthPrice }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

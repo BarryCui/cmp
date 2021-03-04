@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Azure数据库{% endblock %}
+{% block header %}Azure数据库{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_az_db') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>创建时间</th>
+                <th>资源组</th>
+                <th>地区</th>
+                <th>使用量(字节)</th>
+                <th>最大容量(字节)</th>
+                <th>状态</th>
+                <th>最早还原点</th>
+                <th>数据库类型</th>
+                <th>定价层</th>
+                <th>排序规则</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.Name }}</td>
+              <td>{{ row.CreationDate }}</td>
+              <td>{{ row.ResourceGroup }}</td>
+              <td>{{ row.Location }}</td>
+              <td>{{ row.UsedBytes }}</td>
+              <td>{{ row.MaxSizeBytes }}</td>
+              <td>{{ row.Status }}</td>
+              <td>{{ row.EarliestRestoreDate }}</td>
+              <td>{{ row.Type }}</td>
+              <td>{{ row.Tier }}</td>
+              <td>{{ row.Collation }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,38 @@
+h1 { color: #d54d7b; font-family: "Great Vibes", cursive; font-size: 65px; line-height: 60px; font-weight: normal; margin-bottom: 20px; margin-top: 20px; text-align: center; text-shadow: 0 1px 1px #fff; }
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse; 
+  background-color: lightblue;
+}
+
+li {
+    display: inline-block;
+}
+
+.nav {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border: thick solid #32a1ce;
+    background-color: white;
+  }
+
+li a:hover {
+    background-color: yellow;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    border: 2mm ridge rgba(170, 50, 220, .6);
+    text-decoration: none;
+    color: initial;
+}

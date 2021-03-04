@@ -1,0 +1,41 @@
+{% from 'bootstrap/nav.html' import render_nav_item %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ICICLE云管平台 - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+<body>
+<h1>
+<image src="{{url_for('static',filename = 'images/logo.png')}}" > 云管平台 - {% block header %}{% endblock %}
+</h1>
+<div>
+<p>
+<a href="{{url_for('index')}}" class="button">回到首页</a>
+</p>
+</div>
+<div>
+{% block update %}
+{% endblock %}
+</div>
+<nav>
+    <ul class="nav">
+        <li>{{ render_nav_item('ecs', '阿里云ecs') }}</li>
+        <li>{{ render_nav_item('rds', '阿里云rds') }}</li>
+        <li>{{ render_nav_item('dnat', '阿里云dnat') }}</li>
+        <li>{{ render_nav_item('cdn', '阿里云cdn') }}</li>
+        <li>{{ render_nav_item('waf', '阿里云waf') }}</li>
+        <li>{{ render_nav_item('ssl', '阿里云ssl') }}</li>
+        <li>{{ render_nav_item('oss', '阿里云oss') }}</li>
+        <li>{{ render_nav_item('oc_vm', 'Oracle Cloud虚拟机') }}</li>
+        <li>{{ render_nav_item('az_vm', 'Azure虚拟机') }}</li>
+        <li>{{ render_nav_item('az_db', 'Azure数据库') }}</li>
+        <li>{{ render_nav_item('dp_domains', 'Dnspod域名列表') }}</li>
+        <li>{{ render_nav_item('dp_records', 'Dnspod域名对应记录') }}</li>
+    </ul>
+</nav>
+{% block content %} 
+{% endblock %}
+</body>
+</html>

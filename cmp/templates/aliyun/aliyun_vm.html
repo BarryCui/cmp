@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}阿里云ECS{% endblock %}
+{% block header %}阿里云ECS{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_aliyun_ecs') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>实例id</th>
+                <th>实例名称</th>
+                <th>区域</th>
+                <th>可用区</th>
+                <th>账号</th>
+                <th>实例规格</th>
+                <th>内网ip(点击跳转至对应DNAT页面)</th>
+                <th>DNAT条目数</th>
+                <th>公网ip</th>
+                <th>内存</th>
+                <th>CPU</th>
+                <th>操作系统</th>
+                <th>创建时间</th>
+                <th>上月应付金额</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.InstanceId }}</td>
+              <td>{{ row.InstanceName }}</td>
+              <td>{{ row.ZoneId }}</td>
+              <td>{{ row.RegionId }}</td>
+              <td>{{ row.AccountName }}</td>
+              <td>{{ row.InstanceType }}</td>
+              <td><a href={{ url_for('dnat_pip', private_ip=row.PrivateIp) }}>{{ row.PrivateIp }}</td>
+              <td>{{ row.dnat_items }}</td>
+              <td>{{ row.PublicIP }}</td>
+              <td>{{ row.Memory }}</td>
+              <td>{{ row.Cpu }}</td>
+              <td>{{ row.OSName }}</td>
+              <td>{{ row.CreationTime }}</td>
+              <td>{{ row.MonthPrice }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

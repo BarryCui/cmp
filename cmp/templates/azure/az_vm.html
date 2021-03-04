@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Azure虚拟机{% endblock %}
+{% block header %}Azure虚拟机{% endblock %}
+{% block update %}
+{% for message in get_flashed_messages() %}
+    <p style="color: red;">{{ message }}</p>
+{% endfor %}
+    <p><a href="{{ url_for('update_az_vm') }}" class="button">更新数据</a></p>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>主机名</th>
+                <th>内网ip</th>
+                <th>公网ip</th>
+                <th>规格</th>
+                <th>资源组</th>
+                <th>区域</th>
+                <th>系统盘大小</th>
+                <th>数据盘大小</th>
+                <th>镜像</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}    
+              <tr>
+              <td>{{ row.Name }}</td>
+              <td>{{ row.PrivateIp }}</td>
+              <td>{{ row.PublicIp }}</td>
+              <td>{{ row.HardwareProfile }}</td>
+              <td>{{ row.ResourceGroup }}</td>
+              <td>{{ row.Location }}</td>
+              <td>{{ row.OsDiskSizeGb }}</td>
+              <td>{{ row.DataDiskSizeGb }}</td>
+              <td>{{ row.Image }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
