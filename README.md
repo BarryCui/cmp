@@ -16,7 +16,7 @@ No mather which way you choose, you'll need two files: .env and oci\_api\_key.pe
 4. Run Docker container
 - sudo docker network create cmp-network
 - sudo docker run --name cmp-redis --network cmp-network -d redis:alpine
-- sudo docker run --name cmp-mysql -e MYSQL_ROOT_PASSWORD=icicle@123 -e MYSQL_DATABASE=sysop_cmp --network cmp-network -d mysql:8.0 
+- sudo docker run --name cmp-mysql -e MYSQL_ROOT_PASSWORD=<password> -e MYSQL_DATABASE=sysop_cmp --network cmp-network -d mysql:8.0 
 - sudo docker run -d -p 8848:8000 -v $(pwd)/.oci:/root/.oci -v $(pwd)/cmp/env:/cmp/env --network cmp-network --name cmp-app icicle/cmp:v1
 5. Open browser
 - http://127.0.0.1:8848
@@ -35,7 +35,7 @@ No mather which way you choose, you'll need two files: .env and oci\_api\_key.pe
 - sudo docker exec -it cmp /bin/bash
 - flask generate
 7. Open browser
-- http://127.0.0.1:8000
+- http://127.0.0.1:8848
 
 ### Environment Variables in .env file Introduction
 #### aliyun related
