@@ -3,12 +3,7 @@ This is a small python flask program used to gather property data from multiple 
 The following sources have been inregrated:
 Aliyun, Azure, Oracle Cloud, DnsPod
 ## USER DOCUMENTATION
-#### There are two ways to get started:
-1. Build image by yourself locally and run it as a container.
-2. Pull image from your aliyun container service repository and run it as a container.
-No mather which way you choose, you'll need two files: .env and oci\_api\_key.pem
-
-### The first way(Build docker image by yourself) 
+### Get started:
 1. Build Dockerfile
 - sudo docker build -t icicle/cmp:v1 . --no-cache
 2. Put oracle cloud pem key file into $(pwd)/.oci folder
@@ -20,23 +15,7 @@ No mather which way you choose, you'll need two files: .env and oci\_api\_key.pe
 - sudo docker run -d -p 8848:8000 -v $(pwd)/.oci:/root/.oci -v $(pwd)/cmp/env:/cmp/env --network cmp-network --name cmp-app icicle/cmp:v1
 5. Open browser
 - http://127.0.0.1:8848
-
-### The second way(Pull docker image from aliyun)
-
-1. Login 
-- sudo docker login --username=<username> registry.cn-shanghai.aliyuncs.com
-2. Pull image
-- sudo docker pull registry.cn-shanghai.aliyuncs.com/xxx/cmp:<image-version-number>
-3. Prepare .env file and oracle cloud pem key file
-4. Put .env file under ./env/ and key file under ./.oci/ respectively
-5. Run docker container
-- sudo docker run -d -p 8000:8000 -v $(pwd)/.oci:/root/.oci:ro -v $(pwd)/env:/cmp/env:ro --name cmp registry.cn-shanghai.aliyuncs.com/xxx/cmp:<image-version-number>
-6. Execute command to generate data
-- sudo docker exec -it cmp /bin/bash
-- flask generate
-7. Open browser
-- http://127.0.0.1:8848
-
+  
 ### Environment Variables in .env file Introduction
 #### aliyun related
 For aliyun, we use accesskey & secret to authenticate.
@@ -81,7 +60,7 @@ For dnspod, please refer to https://www.dnspod.cn/
 LOGIN_TOKEN="<dnspod-token>"
 ```
 
-## DEVELOPMENT DOCUMENTATION ##
+## DEVELOPMENT DOCUMENTATION
 1. Python setup
 Under project root folder, do the following:
 - python3 -m venv env  
